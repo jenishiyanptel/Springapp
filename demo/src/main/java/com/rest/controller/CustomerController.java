@@ -35,11 +35,10 @@ public class CustomerController {
 	}
 	
 	@DeleteMapping(value="/{id}")
-	public String deletestudent(@PathVariable("id") int id) {
+	public int deletestudent(@PathVariable("id") int id) throws NoSuchCustomerException {
 		System.out.println("inside delete");
-		studentimpl.deleteStudent(id);
 		
-		return "customer deleted successfully";
+		return studentimpl.deleteStudent(id);
 	}
 	
 	@PutMapping(value="/{id}")

@@ -20,6 +20,7 @@ import com.example.bean.Student;
 import com.example.mapper.CallerResultExtractor;
 import com.example.mapper.Planresultextractor;
 import com.example.mapper.StudentRowMapper;
+import com.rest.controller.NoSuchCustomerException;
 
 
 @Repository("studentdao")
@@ -69,16 +70,13 @@ public class StudentDaoImpl implements StudentDao {
 
 
 	@Override
-	public void deleteStudent(int roll_no) {
+	public int deleteStudent(int roll_no) throws NoSuchCustomerException{
 		// TODO Auto-generated method stub
 		String sql="Delete from Student where roll_no=?";
 		
-		if(jdbctemplate.update(sql,roll_no)==1)
-		{
-			System.out.println("deleted record with id "+roll_no);
-		}
-		else
-			System.out.println("roll bumber "+roll_no+ " does not exists in the system");
+		
+		
+		return jdbctemplate.update(sql,roll_no);
 			
 		
 	}
